@@ -1,10 +1,12 @@
 def train(model,train_DL,opimizer,Loss_fn,EPOCH):
     model.train()
+    device = next(model.parameters()).device
     loss_history = []
     NoT = len(train_DL.dataset)
     for ep in range(EPOCH):
         rloss = 0
         for xb,yb in train_DL:
+            xb,yb = xb.to(device),yb.to(device)
             y_hat = model(xb)
             loss = Loss_fn(y_hat,yb)
             opimizer.zero_grad()
