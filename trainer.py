@@ -4,7 +4,9 @@ from dataloader import get_dataset
 from model import CNN
 from train import train
 
-model = CNN()
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+model = CNN().to(device)
 
 BATCH_SiZE =  int(input("BATCH_SIZE : "))
 
