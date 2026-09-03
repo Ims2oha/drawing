@@ -4,9 +4,11 @@ from dataloader import get_dataset
 
 _, Test_DL = get_dataset(1024)
 
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
 model = CNN()
 
-model.load_state_dict(torch.load("./model/EPOCH_50_LF_CrossEntropyLoss_optim_Adam_LR_0.001.pth"))
+model.load_state_dict(torch.load("./model/EPOCH_50_LF_CrossEntropyLoss_optim_Adam_LR_0.001.pth",map_location=DEVICE))
 
 def Test(model,Test_DL):
     model.eval()
@@ -22,4 +24,3 @@ def Test(model,Test_DL):
     return correct
 
 Test(model,Test_DL)
-
