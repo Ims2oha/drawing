@@ -1,6 +1,8 @@
 import torch
 from torch import nn
 
+from data import NUM_CLASSES
+
 class CNN(nn.Module):
     def __init__(self):
         super().__init__()
@@ -30,7 +32,7 @@ class CNN(nn.Module):
                                         nn.ReLU())#kernel_size 1인 CNN 즉 1x1CNN을 쓸려면 1x1으로 채널 축소 -> 3x3 CNN 통과 1x1으로 채널 증가하는 방식으로 증가 하고 축소해도 괜찮음
         self.fc1 = nn.Sequential(nn.Linear(128*7*7,1024),
                                  nn.ReLU(),
-                                 nn.Linear(1024,345))
+                                 nn.Linear(1024,NUM_CLASSES))
     def forward(self,x):
         x = self.Conv_block1(x)
         x = self.Maxpool1(x)

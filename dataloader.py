@@ -1,5 +1,3 @@
-"""DataLoaders for the QuickDraw datasets built in `data.py`."""
-
 import torch
 
 from data import Test_DS, train_DS

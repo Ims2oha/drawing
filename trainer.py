@@ -10,7 +10,7 @@ model = CNN().to(device)
 
 BATCH_SiZE =  int(input("BATCH_SIZE : "))
 
-train_DL = get_dataset(BATCH_SiZE)
+train_DL,_ = get_dataset(BATCH_SiZE)
 
 EPOCH = int(input("EPOCH : "))
 
@@ -18,7 +18,7 @@ Loss_fn = nn.CrossEntropyLoss()
 
 LR = float(input("LR : "))
 
-optimizer = optim.Adam(model.parameters,lr=LR)
+optimizer = optim.Adam(model.parameters(),lr=LR)
 
 loss_history = train(EPOCH=EPOCH,Loss_fn=Loss_fn,opimizer=optimizer,model=model,train_DL=train_DL)
 
