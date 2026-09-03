@@ -4,26 +4,27 @@ from dataloader import get_dataset
 from model import CNN
 from train import train
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+if __name__ == "__main__":
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
-model = CNN().to(device)
+    model = CNN().to(device)
 
-BATCH_SiZE =  int(input("BATCH_SIZE : "))
+    BATCH_SiZE =  int(input("BATCH_SIZE : "))
 
-train_DL,_ = get_dataset(BATCH_SiZE)
+    train_DL,_ = get_dataset(BATCH_SiZE)
 
-EPOCH = int(input("EPOCH : "))
+    EPOCH = int(input("EPOCH : "))
 
-Loss_fn = nn.CrossEntropyLoss()
+    Loss_fn = nn.CrossEntropyLoss()
 
-LR = float(input("LR : "))
+    LR = float(input("LR : "))
 
-optimizer = optim.Adam(model.parameters(),lr=LR)
+    optimizer = optim.Adam(model.parameters(),lr=LR)
 
-loss_history = train(EPOCH=EPOCH,Loss_fn=Loss_fn,opimizer=optimizer,model=model,train_DL=train_DL)
+    loss_history = train(EPOCH=EPOCH,Loss_fn=Loss_fn,opimizer=optimizer,model=model,train_DL=train_DL)
 
-print(loss_history)
+    print(loss_history)
 
-save_model_path = f"./model/EPOCH_{EPOCH}_LF_{Loss_fn}_optim_{optimizer}_LR_{LR}.pth"
+    save_model_path = f"./model/EPOCH_{EPOCH}_LF_{Loss_fn}_optim_{optimizer}_LR_{LR}.pth"
 
-torch.save(model.state_dict(),save_model_path)
+    torch.save(model.state_dict(),save_model_path)
