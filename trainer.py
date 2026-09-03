@@ -25,6 +25,6 @@ if __name__ == "__main__":
 
     print(loss_history)
 
-    save_model_path = f"./model/EPOCH_{EPOCH}_LF_{Loss_fn}_optim_{optimizer}_LR_{LR}.pth"
+    save_model_path = f"./model/EPOCH_{EPOCH}_LF_{type(Loss_fn).__name__}_optim_{type(optimizer).__name__}_LR_{LR}.pth"
 
     torch.save(model.state_dict(),save_model_path)
